@@ -1,7 +1,15 @@
+import Landing from "./pages/Landing";
+// import styled from 'styled-components';
+
+
+
 
 function App() {
   return (
-    <h1>Hirefy</h1>
+    <div>
+      <h1>Hirefy</h1>
+      <Landing />
+    </div>
   );
 }
 
