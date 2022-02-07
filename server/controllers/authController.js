@@ -7,7 +7,17 @@ module.exports.register = async function (req, res, next) {
       email: req.body.email,
       password: req.body.password,
     });
-    res.status(201).json({ user });
+
+    const token = user.createJWT();
+
+    res.status(201).json({
+      user: {
+        name: user.name,
+        email: user.email,
+        location: user.location,
+      },
+      token,
+    });
   } catch (error) {
     next(error);
   }
