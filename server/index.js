@@ -12,7 +12,15 @@ const jobsRouter = require("./routes/jobsRoutes.js");
 
 dotenv.config();
 
+const morgan = require('morgan')
+
 //************ Middleware */
+
+if (process.env.NODE_ENV !== 'production') {
+  app.use(morgan('dev'))
+}
+
+
 app.use(express.json());
 // app.use(cors());
 
