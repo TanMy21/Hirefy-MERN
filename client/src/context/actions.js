@@ -12,3 +12,10 @@ export const REGISTER_USER_ERROR = "REGISTER_USER_ERROR";
 export const LOGIN_USER_BEGIN = "LOGIN_USER_BEGIN";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
 export const LOGIN_USER_ERROR = "LOGIN_USER_ERROR";
+
+//------------- Toggle Sidebar
+export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR'
+
+
+//------------- Logout 
+export const LOGOUT_USER = 'LOGOUT_USER'
