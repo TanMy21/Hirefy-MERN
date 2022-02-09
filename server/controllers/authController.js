@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const StatusCodes = require("http-status-codes");
 const errorHandlerMiddleware = require("../middleware/error-handler.js");
 const { BadRequestError, UnAuthenticatedError } = require('../errors/index.js')
 

@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 const notFoundMiddleware = require("./middleware/not-found.js");
 const errorHandlerMiddleware = require("./middleware/error-handler.js");
 const connectDB = require("./config/db-config.js");
-// const cors = require("cors");
+const cors = require("cors");
 const port = process.env.PORT || 9000;
 // routers
 const authRouter = require("./routes/authRoutes.js");
@@ -22,7 +22,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 app.use(express.json());
-// app.use(cors());
+app.use(cors());
 
 // routes
 app.get("/", (req, res) => {
