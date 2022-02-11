@@ -3,6 +3,7 @@ const app = express();
 const dotenv = require("dotenv");
 const notFoundMiddleware = require("./middleware/not-found.js");
 const errorHandlerMiddleware = require("./middleware/error-handler.js");
+const authenticateUser = require("./middleware/auth.js");
 const connectDB = require("./config/db-config.js");
 const cors = require("cors");
 const port = process.env.PORT || 9000;
@@ -30,7 +31,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/jobs", jobsRouter);
+app.use("/api/v1/jobs", authenticateUser,jobsRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

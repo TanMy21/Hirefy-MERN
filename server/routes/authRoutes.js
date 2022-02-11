@@ -1,5 +1,5 @@
 const express = require("express");
-
+const authenticateUser = require("../middleware/auth.js");
 const router = express.Router();
 
 const {
@@ -10,6 +10,7 @@ const {
 
 router.route("/register").post(register);
 router.route("/login").post(login);
-router.route("/update-user").patch(updateUser);
+router.route("/update-user").patch(authenticateUser, updateUser);
+
 
 module.exports = router;

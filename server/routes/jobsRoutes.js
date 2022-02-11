@@ -1,4 +1,5 @@
 const express = require("express");
+const authenticateUser = require("../middleware/auth.js");
 
 const router = express.Router();
 
@@ -12,7 +13,7 @@ const {
 
 router.route("/").post(createJob).get(getAllJobs);
 // remember about :id
-router.route("/stats").get(showStats);
+router.route("/stats").get(authenticateUser, showStats);
 router.route("/:id").delete(deleteJob).patch(updateJob);
 
 module.exports = router;
