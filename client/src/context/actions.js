@@ -19,3 +19,9 @@ export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR'
 
 //------------- Logout 
 export const LOGOUT_USER = 'LOGOUT_USER'
+
+
+//---------------------- update user
+export const UPDATE_USER_BEGIN = 'UPDATE_USER_BEGIN'
+export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS'
+export const UPDATE_USER_ERROR = 'UPDATE_USER_ERROR'
