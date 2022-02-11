@@ -1,5 +1,17 @@
+const Job = require("../models/Job");
+const StatusCodes = require("http-status-codes");
+
 module.exports.createJob = async function (req, res) {
-  res.send("create job");
+  const { position, company } = req.body;
+
+  if (!position || !company) {
+    throw new Error("Please Provide All Values");
+  }
+
+  req.body.createdBy = req.user.userId;
+
+  const job = await Job.create(req.body);
+  res.status(StatusCodes.CREATED).json({ job });
 };
 module.exports.getAllJobs = async function (req, res) {
   res.send("get all jobs");
