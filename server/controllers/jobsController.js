@@ -11,11 +11,22 @@ module.exports.createJob = async function (req, res) {
   req.body.createdBy = req.user.userId;
 
   const job = await Job.create(req.body);
-  res.status(StatusCodes.CREATED).json({ job });
+  res.status(201).json({ job });
 };
+
+
+
 module.exports.getAllJobs = async function (req, res) {
-  res.send("get all jobs");
+  const jobs = await Job.find({ createdBy: req.user.userId });
+
+  res
+    .status(201)
+    .json({ jobs, totalJobs: jobs.length, numOfPages: 1 });
 };
+
+
+
+
 module.exports.deleteJob = async function (req, res) {
   res.send("delete job");
 };
