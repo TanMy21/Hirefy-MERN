@@ -1,6 +1,7 @@
 const Job = require("../models/Job");
 const StatusCodes = require("http-status-codes");
 const checkPermissions = require('../utils/checkPermissions.js')
+const mongoose = require('mongoose')
 
 module.exports.createJob = async function (req, res) {
   const { position, company } = req.body;
@@ -74,5 +75,21 @@ module.exports.updateJob = async function (req, res) {
 
 
 module.exports.showStats = async function (req, res) {
-  res.send("show stats");
+  let stats = await Job.aggregate([
+    { $match: { createdBy: mongoose.Types.ObjectId(req.user.userId) } },
+    { $group: { _id: '$status', count: { $sum: 1 } } },
+  ])
+  stats = stats.reduce((acc, curr) => {
+    const { _id: title, count } = curr
+    acc[title] = count
+    return acc
+  }, {})
+
+  const defaultStats = {
+    pending: stats.pending || 0,
+    interview: stats.interview || 0,
+    declined: stats.declined || 0,
+  }
+  let monthlyApplications = []
+  res.status(201).json({ defaultStats, monthlyApplications })
 };
