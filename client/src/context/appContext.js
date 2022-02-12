@@ -21,6 +21,7 @@ import {
   CREATE_JOB_ERROR,
   GET_JOBS_BEGIN,
   GET_JOBS_SUCCESS,
+  SET_EDIT_JOB,
 } from "./actions";
 import reducer from "./reducer";
 
@@ -235,14 +236,13 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
-
   const getJobs = async () => {
-    let url = `/jobs`
-  
-    dispatch({ type: GET_JOBS_BEGIN })
+    let url = `/jobs`;
+
+    dispatch({ type: GET_JOBS_BEGIN });
     try {
-      const { data } = await authFetch(url)
-      const { jobs, totalJobs, numOfPages } = data
+      const { data } = await authFetch(url);
+      const { jobs, totalJobs, numOfPages } = data;
       dispatch({
         type: GET_JOBS_SUCCESS,
         payload: {
@@ -250,26 +250,26 @@ const AppProvider = ({ children }) => {
           totalJobs,
           numOfPages,
         },
-      })
+      });
     } catch (error) {
-      console.log(error.response)
+      console.log(error.response);
       // logoutUser()
     }
-    clearAlert()
-  }
-
+    clearAlert();
+  };
+  const editJob = () => {
+    console.log("edit job");
+  };
   const setEditJob = (id) => {
-    console.log(`set edit job : ${id}`)
-  }
-  const deleteJob = (id) =>{
-    console.log(`delete : ${id}`)
-  }
+    dispatch({ type: SET_EDIT_JOB, payload: { id } });
+  };
+  const deleteJob = (id) => {
+    console.log(`delete : ${id}`);
+  };
 
-
-  
   useEffect(() => {
-    getJobs()
-  }, [])
+    getJobs();
+  }, []);
 
   return (
     <AppContext.Provider
@@ -287,18 +287,13 @@ const AppProvider = ({ children }) => {
         getJobs,
         setEditJob,
         deleteJob,
+        editJob
       }}
     >
       {children}
     </AppContext.Provider>
   );
 };
-
-
-
-
-
-
 
 const useAppContext = () => {
   return useContext(AppContext);
