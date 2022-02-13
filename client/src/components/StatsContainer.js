@@ -1,3 +1,4 @@
+import React from 'react';
 import { useAppContext } from '../context/appContext'
 import StatsItem from './StatsItem'
 import { FaSuitcaseRolling, FaCalendarCheck, FaBug } from 'react-icons/fa'
