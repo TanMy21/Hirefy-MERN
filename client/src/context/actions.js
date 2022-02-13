@@ -55,3 +55,6 @@ export const SHOW_STATS_SUCCESS = 'SHOW_STATS_SUCCESS'
 
 //------- Search Filter
 export const CLEAR_FILTERS = 'CLEAR_FILTERS'
+
+//--------- Change Page
+export const CHANGE_PAGE = 'CHANGE_PAGE'
