@@ -52,3 +52,6 @@ export const DELETE_JOB_BEGIN = 'DELETE_JOB_BEGIN'
 //--------- Stats
 export const SHOW_STATS_BEGIN = 'SHOW_STATS_BEGIN'
 export const SHOW_STATS_SUCCESS = 'SHOW_STATS_SUCCESS'
+
+//------- Search Filter
+export const CLEAR_FILTERS = 'CLEAR_FILTERS'
